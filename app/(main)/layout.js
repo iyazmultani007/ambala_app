@@ -1,8 +1,16 @@
 "use client";
 
-import Header from "@/components/Header/Header";
-import Sidebar from "@/components/Sidebar/Sidebar";
+// import Header from "@/components/Header/Header";
+// import Sidebar from "@/components/Sidebar/Sidebar";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const Header = dynamic(() => import("@/components/Header/Header"), {
+  ssr: false,
+});
+const Sidebar = dynamic(() => import("@/components/Sidebar/Sidebar"), {
+  ssr: false,
+});
 
 function MainLayout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);

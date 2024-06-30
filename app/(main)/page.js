@@ -1,9 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useAuthContext } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
-import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
-import CardData from "@/components/CardData/CardData";
+import dynamic from 'next/dynamic';
+
+const ProtectedRoute = dynamic(() => import("@/components/ProtectedRoute/ProtectedRoute"), {
+  ssr: false,
+});
+const CardData = dynamic(() => import("@/components/CardData/CardData"), {
+  ssr: false,
+});
+const ChartOne = dynamic(() => import("@/components/Charts/ChartOne"), {
+  ssr: false,
+});
+
 import {
   Timestamp,
   collection,
@@ -17,7 +25,7 @@ import { startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_green.css"; // Change theme as necessary
 import "flatpickr/dist/flatpickr.css"; // Import flatpickr styles
-import ChartOne from "@/components/Charts/ChartOne";
+
 
 export default function Home() {
   const [totalSalesAllBranches, setTotalSalesAllBranches] = useState(0);
